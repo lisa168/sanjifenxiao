@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title>产品中心</title>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="pc_top">
+		金融树广告页面内容
+	</div>
+	<div class="pc_main">
+		<dl id="join">
+			<dt>请填写以下信息完成支付</dt>
+			<dd>
+				<label for="pc_user">姓名</label>
+				<input type="text" placeholder="请输入真实姓名" id="pc_user">
+			</dd>
+			<dd>
+				<label for="pc_tel">手机号</label>
+				<input type="tel" id="pc_tel" placeholder="请输入11位正确手机号">
+			</dd>
+			<dd class="pc_getyzm">
+				<label for="pc_yzm">验证码</label>
+				<input type="tel" id="pc_yzm" placeholder="请填写手机验证码">
+				<span>获取验证码</span>
+			</dd>
+		</dl>
+		<div class="pc_pay"><input type="submit" value="支付宝支付￥368.00"></div>
+		<!-- <div class="pc_pay active" ><input type="submit" value="微信支付￥368.00" ></div> -->
+	</div>
+	<div class="joinbox pc_joinbox">
+		<div class="join_face">
+			<img src="images/join_face.jpg">
+		</div>
+		<div class="join_mesg"><span>卜宣瑞</span>&nbsp;&nbsp;已正式为金榕树代言，并邀请您加入。</div>
+		<a href="#join" class="join_btn">立即加入</a>
+	</div>
+	<div class="pay_tips" style="display:none"></div>
+</div>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function (){
+		$(window).on('scroll',function (){
+			var pc_scrollTop=$(window).scrollTop();
+			var pc_contH=$('.wrap').height();
+			var pc_mainH=$('.pc_main').height();
+			var h=$(window).height();
+			if(pc_scrollTop+h+200>pc_contH){
+				$('.joinbox').fadeOut();
+			}else{
+				$('.joinbox').fadeIn();
+			}
+		});
+		var pay_reg={telreg:/^1[3|4|5|8]\d{9}$/,yzmreg:/^\d{6}$/,userreg:/.{2,}/};
+		$('#pc_tel').on('blur',function (){
+			var telVal=$('#pc_tel').val();
+			if(pay_reg.telreg.test(telVal)){
+				$('.pc_getyzm span').addClass('active');
+			}else{
+				$('.pc_getyzm span').removeClass('active');
+			}
+		})
+		$('.pc_pay input').on('click',function (){
+			var userval=$('#pc_user').val();
+			var telval=$('#pc_tel').val();
+			var yzmval=$('#pc_yzm').val();
+			if(!pay_reg.userreg.test(userval)){
+				errorTip('请输入真实姓名！')
+				return;
+			}
+			if(!pay_reg.telreg.test(telval)){
+				errorTip('请输入11位正确的手机号码！')
+				return;
+			}
+			if(!pay_reg.telreg.test(yzmval)){
+				errorTip('请输入正确的手机验证码！')
+				return;
+			}
+			alert(1)
+		});
+		function errorTip(html){
+			$('.pay_tips').html(html).css({'marginLeft':-$('.pay_tips').innerWidth()/2}).fadeIn();
+			clearTimeout(timer);
+			var timer=setTimeout(function (){$('.pay_tips').fadeOut();},2000);
+		}
+		
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="main3">
+		<div class="mc_top">提示：您还未进同学群，请加班长QQ：<span>80181810</span>入群</div>
+		<div class="mc_head">
+			<div class="mc_person">
+				<img src="images/mc_head.jpg">
+				<p>你好，王伟！</p>
+			</div>
+		</div>
+		<div class="mc_tx">
+			<p class="clearfix"><span>可提现金额</span><span>￥</span><span class="mc_money">12.86</span></p>
+			<a href="javascript:;">我要提现</a>
+		</div>
+		<div class="mc_main">
+			<div class="mc_mabox">
+				<a href="represent.html" class="mc_mabg active">
+					<img src="images/mc_mabg1.jpg" class="mc_maimg1 mc_maimg">
+					<!-- <img src="images/mc_mabg2.jpg" class="mc_maimg2 mc_maimg" style="display:none"> -->
+					<img src="images/mc_maimg1.png" class="mc_maimg3">
+					<div class="mc_mask">
+						<p><span></span>点击生成推广二维码，赚奖励！</p>
+					</div>
+				</a>
+			</div>
+			<div class="mc_list">
+				<ul class="clearfix">
+					<li><a href="myProduct.html">我的产品</a></li>
+					<li><a href="order.html">我的订单</a></li>
+					<li><a href="earnings.html">我的收益</a></li>
+					<li><a href="myAgent.html">我的代理</a></li>
+					<li><a href="allEarnings.html">财务明细</a></li>
+					<li><a href="set.html">设置</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<ul class="clearfix">
+			<li><a href="productIndex.html"><span>产品中心</span></a></li>
+			<li><a href="index.html"><span>会员中心</span></a></li>
+			<li><a href="javascript:;"><span>客服中心</span></a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function (){
+		isOK();
+		$('.mc_tx a').on('click',function (){
+			isOK();
+		});
+		function isOK(){
+			if(Number($('.mc_tx p span.mc_money').html())!=0){
+				$('.mc_tx a').attr('href','applayMoney.html');
+				$('.mc_tx a').removeClass('active');
+			}else{
+				$('.mc_tx a').addClass('active');
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title>财务明细</title>
+	<link rel="stylesheet" type="text/css" href="css/swiper.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap ae_wrap">
+	<div class="aa_top">
+		<i></i>
+		财务明细
+	</div>
+	<div class="clearfix ae_btn">
+		<a href="javascript:;" class="active"><p>全部</p></a>
+		<a href="javascript:;"><p>收益</p></a>
+		<a href="javascript:;"><p>提现</p></a>
+		<a href="javascript:;"><p>其他</p></a>
+		<span></span>
+	</div>
+	<div class="ae_main">
+		<div class="swiper-container">
+			<ul class="ae_item swiper-wrapper">
+				<li class="swiper-slide">
+					<div class="ae_list">
+						<div class="ae_sum ae_money">+124.00<span>2015-06-30&nbsp;&nbsp;17:24:21</span></div>
+						<p>分享佣金收益-金榕树自媒体商务功能服务平台分享佣金收益-金榕树自媒体商务功能服务平台</p>
+					</div>
+					<div class="ae_list">
+						<div class="ae_sum ae_money">+24.00<span>2015-06-19&nbsp;&nbsp;10:21:06</span></div>
+						<p>一级代理张三贡献收益-金榕树自媒体商务功能服务平台</p>
+					</div>
+					<div class="ae_list">
+						<div class="ae_minus ae_money">-100.00<span>2015-06-30&nbsp;&nbsp;17:24:21</span></div>
+						<p>申请提现扣款</p>
+					</div>
+					<div class="ae_list">
+						<div class="ae_sum ae_money">+124.00<span>2015-06-30&nbsp;&nbsp;17:24:21</span></div>
+						<p>分享佣金收益-金榕树自媒体商务功能服务平台</p>
+					</div>
+					<div class="ae_list">
+						<div class="ae_sum ae_money">+24.00<span>2015-06-19&nbsp;&nbsp;10:21:06</span></div>
+						<p>一级代理张三贡献收益-金榕树自媒体商务功能服务平台</p>
+					</div>
+					<div class="ae_list">
+						<div class="ae_minus ae_money">-100.00<span>2015-06-30&nbsp;&nbsp;17:24:21</span></div>
+						<p>申请提现扣款</p>
+					</div>
+				</li>
+				<li class="swiper-slide">
+					<div class="ae_list">
+						<div class="ae_sum ae_money">+124.00<span>2015-06-30&nbsp;&nbsp;17:24:21</span></div>
+						<p>分享佣金收益-金榕树自媒体商务功能服务平台</p>
+					</div>
+				</li>
+				<li class="swiper-slide">
+					<div class="ae_list">
+						<div class="ae_sum ae_money">+124.00<span>2015-06-30&nbsp;&nbsp;17:24:21</span></div>
+						<p>分享佣金收益-金榕树自媒体商务功能服务平台</p>
+					</div>
+				</li>
+				<li class="swiper-slide">
+					<p class="ae_nomoney">可提现金额为0</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer">
+		<ul class="clearfix">
+			<li><a href="productIndex.html"><span>产品中心</span></a></li>
+			<li><a href="index.html"><span>会员中心</span></a></li>
+			<li><a href="javascript:;"><span>客服中心</span></a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function (){
+		var myswiper = new Swiper('.swiper-container',{
+			onlyExternal:true
+		});
+		var moveLeft=$('.ae_btn a p').eq(0).offset().left;
+		$('.ae_btn span').css('left',moveLeft+'px');
+		// 所有收益
+		$('.ae_btn a').each(function (){
+			var _index=$(this).index();
+			$(this).on('click',function (){
+				tab(_index);
+			});
+		});
+		if(location.href.indexOf('iNow=1')!=-1){
+			tab(1);
+		}
+		function tab(now){
+			$('.ae_btn a').removeClass('active');
+			$('.ae_btn a').eq(now).addClass('active');
+			var moveLeft=$('.ae_btn a').eq(now).find('p').offset().left;
+			$('.ae_btn a').eq(now).parent().find('span').animate({left:moveLeft+'px'});
+			myswiper.slideTo(now,500,false);
+		}
+		
+
+	})
+</script>
+</body>
+</html>

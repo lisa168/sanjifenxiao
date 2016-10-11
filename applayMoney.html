@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="aa_top">
+		<i></i>
+		申请提现
+	</div>
+	<div class="am_main main">
+		<a href="setAlipay.html" class="am_alipay">
+			<div class="am_img"><img src="images/am_icon.png"></div>
+			点击设置账号信息
+			<span></span>
+		</a>
+		<a href="lookAccount.html" class="am_alipay active">
+			<div class="am_img"><img src="images/am_icon.png"></div>
+			<ul>
+				<li>zhouhualing@126.com</li>
+				<li>周华玲</li>
+			</ul>
+			<span></span>
+		</a>
+		<p>当月提现（每月一次），次日10日之前结算完毕。</p>
+		<div class="am_money"><label>提现金额</label><input type="tel" placeholder="本次最多可以提现654.00元"></div>
+		<div class="am_submitBtn"><a href="javascript:;"><input type="submit" value="提交"></a></div>
+		<div class="am_submitBtn"><input type="submit" value="提交" class="active"></div>
+	</div>
+	<div class="footer">
+		<ul class="clearfix">
+			<li><a href="productIndex.html"><span>产品中心</span></a></li>
+			<li><a href="index.html"><span>会员中心</span></a></li>
+			<li><a href="javascript:;"><span>客服中心</span></a></li>
+		</ul>
+	</div>
+	<div class="maskLayer" style="display:none"></div>
+	<div class="am_success" style="display:none">
+		<h4>提现成功</h4>
+		<p>已收到您的提现请求，平台将于次月10日之前把钱打入您的提现账户,请注意查收。</p>
+		<a href="javascript:;" class="am_knowBtn">我知道了</a>
+	</div>
+</div>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function (){
+		$('.am_submitBtn').on('click',function (){
+			$('.maskLayer,.am_success').show();
+			$('.am_knowBtn').on('click',function (){
+				$('.maskLayer,.am_success').hide();
+			})
+		})
+	})
+</script>
+</body>
+</html>

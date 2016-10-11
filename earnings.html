@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="warp">
+	<div class="aa_top">
+		<i></i>
+		我的收益
+		<a href="allEarnings.html?iNow=1">收益明细</a>
+	</div>
+	<div class="en_main main">
+		<div id="container" style="min-width:300px;height:70%;"></div>
+		<div class="en_table">
+			<div class="en_title">
+				<ul class="clearfix">
+					<li>一级收益</li>
+					<li>二级收益</li>
+					<li>三级收益</li>
+				</ul>
+			</div>
+			<div class="en_money">
+				<ul class="clearfix">
+					<li>￥<span>100.00</span></li>
+					<li>￥<span>180.00</span></li>
+					<li>￥<span>120.00</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<ul class="clearfix">
+			<li><a href="productIndex.html"><span>产品中心</span></a></li>
+			<li><a href="index.html"><span>会员中心</span></a></li>
+			<li><a href="javascript:;"><span>客服中心</span></a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var _ratio={};
+		var num1=Number($('.en_money ul li').eq(0).find('span').html());
+		var num2=Number($('.en_money ul li').eq(1).find('span').html());
+		var num3=Number($('.en_money ul li').eq(2).find('span').html());
+		var en_sum=num1+num2+num3;
+		_ratio={one:parseFloat((num1/en_sum*100).toFixed(2)),two:parseFloat((num2/en_sum*100).toFixed(2)),three:parseFloat((num3/en_sum*100).toFixed(2))};
+		Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+		    return {
+		        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+		        stops: [
+		            [0, color],
+		            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+		        ]
+		    }
+		});
+	    // Build the chart
+	    $('#container').highcharts({
+	        chart: {
+	            plotBackgroundColor: null,
+	            plotBorderWidth: null,
+	            plotShadow: false
+	        },
+	        title: {
+	            text: ''
+	        },
+	        tooltip: {
+	            pointFormat: ': <b>{point.percentage:.1f}%</b>'
+	        },
+	        plotOptions: {
+	            pie: {
+	                allowPointSelect: true,
+	                cursor: 'pointer',
+	                dataLabels: {
+	                    enabled: true,
+	                    //connectorColor: '#000000',
+	                    format: '{point.percentage:.1f}%'
+	                },
+	                showInLegend: true
+	            }
+	        },
+	        series: [{
+	            type: 'pie',
+	            // name: 'Browser share',
+	            data: [
+	                {
+	                	name: '一级代理',
+	                    y: _ratio.one,
+                        sliced: true,
+                        selected: true
+	                },	
+	            	['二级代理',_ratio.two],
+	                ['三级代理',_ratio.three]
+	            ]
+	        }],
+	        credits:{enabled:false},
+	        colors:['#8dd1f1','#c0a5ed','#f58b89'],
+	    });
+	});
+</script>
+</body>
+</html>

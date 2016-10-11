@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="aa_top">
+		<i></i>
+		设置提现支付宝账户
+	</div>
+	<div class="sl_main main">
+		<ul>
+			<li><label for="sl_user">姓名</label><input type="text" id="sl_user" placeholder="请输入真实姓名"></li>
+			<li><label for="sl_val">支付宝账号</label><input type="text" id="sl_val" placeholder="请输真实有效的支付宝账号"></li>
+		</ul>
+		<div class="sl_center">
+			<div class="sl_tips">* 个人信息及支付宝账号请一定仔细检查是否正确，以免耽误您的提现时间。</div>
+			<input type="submit" value="提交" id="sl_submitBtn">
+			<input type="submit" value="提交" id="sl_submitBtn" class="active">
+		</div>
+	</div>
+	<div class="footer">
+		<ul class="clearfix">
+			<li><a href="productIndex.html"><span>产品中心</span></a></li>
+			<li><a href="member.html"><span>会员中心</span></a></li>
+			<li><a href="javascript:;"><span>客服中心</span></a></li>
+		</ul>
+	</div>
+	<div class="maskLayer" style="display:none"></div>
+	<div class="sl_sure" style="display:none">
+		<h4>确认信息</h4>
+		<p>请再次确认提现支付宝账户信息：</p>
+		<p>姓名：王伟</p>
+		<p>支付宝账号：zhangyiyi1029</p>
+		<p class="sl_tips">一旦提交将无法修改，请仔细核对！</p>
+		<div class="sl_maskBtn">
+			<input type="button" value="取消" id="sl_cancelBtn">
+			<input type="button" value="确认" id="sl_trueBtn">
+		</div>
+	</div>
+	<div class="pay_tips" style="display:none"></div>
+</div>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function (){
+		$('#sl_submitBtn').on('click',function (){
+			var userval=$('#sl_user').val();
+			var accountval=$('#sl_val').val();
+			if(!userval){
+				errorTip('请输入真实姓名！');
+				return;
+			}
+			if(!accountval){
+				errorTip('请输入支付宝账号！');
+				return;
+			}
+			$('.maskLayer,.sl_sure').show();
+			// 取消
+			$('#sl_cancelBtn').on('click',function (){
+				$('.maskLayer,.sl_sure').hide();
+			});
+			// 确定
+			// 跳转到lookAccount.html
+		});
+		function errorTip(html){
+			$('.pay_tips').html(html).fadeIn().css({'marginLeft':-$('.pay_tips').innerWidth()/2,'bottom':'55px'});
+			clearTimeout(timer);
+			var timer=setTimeout(function (){$('.pay_tips').fadeOut();},2000);
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no" />
+	<title>产品中心</title>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<div class="main2">
+		<div class="pc_top">
+			金融树广告页面内容
+		</div>
+		<div class="ps_main">
+			<div class="ps_center">
+				<div class="ps_c_top">
+					<img src="images/jrsLogo.png">
+					<p class="ps_style">您已成为金榕树金叶子</p>
+					<p>您是金榕树第&nbsp;<span>12</span>&nbsp;期会员，会员号：<span>102808</span></p>
+				</div>
+				<div class="ps_c_bottom">
+					<p>如果您还未加入班级群，请添加班长QQ号：<span>78767654</span>进群。</p>
+					<p  class="ps_style">您已经是金榕树会员，现在可推荐好友一起在金榕树创业学习，赚取奖励。</p>
+					<a href="member.html">立即进入会员中心</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="joinbox">
+		<div class="join_face">
+			<img src="images/join_face.jpg">
+		</div>
+		<div class="join_mesg"><span>王伟</span>&nbsp;&nbsp;邀请好友一起加入，赚取奖励。</div>
+		<a href="javascript:;" class="join_btn">分享给好友</a>
+	</div>
+	<div class="maskLayer2" style="display:none"></div>
+	<div class="tipsLayer" style="display:none">
+		<img src="images/tipsLayer.png">
+	</div>
+</div>
+<script type="text/javascript" src="js/member.js"></script>
+<script type="text/javascript">
+	$(function (){
+		//浏览器类型
+		var brower=(function(){
+		    var ua=navigator.userAgent.toLowerCase();
+		    return {
+		        weixin: ua.indexOf('micromessenger') >-1 //微信
+		    }
+		})();
+		$('.join_btn').on('click',function (){
+			if(brower.weixin){
+				$('.maskLayer2,.tipsLayer').show();
+				$('.tipsLayer,.maskLayer2').on('click',function(){
+					$('.tipsLayer,.maskLayer2').hide();
+				});
+			}else{
+				$(this).attr('href','productCenter.html');
+			}
+		});
+		
+	})
+</script>
+</body>
+</html>
